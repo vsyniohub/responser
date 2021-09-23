@@ -7,6 +7,6 @@ global class Responser {
     }
     @HttpPost
     global static void doPost() {
-        RestContext.response.responseBody = Blob.valueOf('{"response": "some"}');
+        new HTTPResponseHandler().processCallin();
     }
 }
