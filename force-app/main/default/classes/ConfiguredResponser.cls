@@ -26,7 +26,7 @@ public class ConfiguredResponser extends AbstractResponser {
     }
     
     private void queryResponseConfiguration(String resourceId) {
-        responseConfiguration = [SELECT Id, RecordTypeId, Raw_Response__c FROM Response_Configuration__c WHERE Id = :resourceId];    
+        responseConfiguration = [SELECT Id, RecordTypeId FROM Response_Configuration__c WHERE Id = :resourceId];    
         if (responseConfiguration == null) {
             throw new SObjectException('No configuration');
         } 
@@ -39,7 +39,7 @@ public class ConfiguredResponser extends AbstractResponser {
         }
     }
     private void queryResponseAttributes(String resourceId) {
-        responseAttributesMap = new Map<Id, Response_Attribute__c>([SELECT Id, Response_Object__c, Response_Configuration__c, 																Tag_Name__c, Value__c 
+        responseAttributesMap = new Map<Id, Response_Attribute__c>([SELECT Id, Response_Object__c, Response_Configuration__c, Tag_Name__c, Value__c 
                                                                     FROM Response_Attribute__c WHERE Response_Configuration__c = :resourceId]);
     }
     public ConfiguredResponser(String resourceId) {
