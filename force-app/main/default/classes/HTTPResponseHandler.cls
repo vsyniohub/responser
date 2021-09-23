@@ -8,7 +8,7 @@ public class HTTPResponseHandler {
     private RestResponse response;
     
     public HTTPResponseHandler() {
-		fullURI 	= RestContext.request.requestURI;
+        fullURI 	= RestContext.request.requestURI;
         resourceId 	= fullURI.substringAfterLast(CHAR_SLASH_CHAR);
         response 	= RestContext.response;
     }
@@ -21,7 +21,7 @@ public class HTTPResponseHandler {
         setCode(responseCodeHandler.getHttpResponseCode());
     }
     private void setBody(String responseBody) {
-		response.responseBody = Blob.valueOf(responseBody.replace('&quot;', '"'));
+        response.responseBody = Blob.valueOf(responseBody.replace('&quot;', '"'));
     }
     private void setContentType() {
         response.addHeader(CONTENT_TYPE_STRING, CONTENT_TYPE_STRING_VAL);
