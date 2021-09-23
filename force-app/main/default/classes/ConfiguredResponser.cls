@@ -11,17 +11,17 @@ public class ConfiguredResponser extends AbstractResponser {
     }
     
    /* *********************************************
-	** Method Name: main
-	** Parameters: no
-	** Returns: String, returns JSON
-	** ********************************************* */
+    ** Method Name: main
+    ** Parameters: no
+    ** Returns: String, returns JSON
+    ** ********************************************* */
     public override String main() {
         queryResponseConfiguration(resourceId);
         queryResponseObjects(resourceId);
         queryResponseAttributes(resourceId);
         //setSortable(true);
         buildLevelMap();
-		//arrangeLevels();
+        //arrangeLevels();
         return buildJSON();
     }
     
@@ -34,7 +34,7 @@ public class ConfiguredResponser extends AbstractResponser {
     private void queryResponseObjects(String resourceId) {
         responseObjectMap = new Map<Id, Response_Object__c>([SELECT Id, Name, Response_Configuration__c, Response_Object__c  
                                                              FROM Response_Object__c WHERE Response_Configuration__c = :resourceId]);
-		if (responseObjectMap == null || responseObjectMap.isEmpty()) {
+        if (responseObjectMap == null || responseObjectMap.isEmpty()) {
             throw new SObjectException('No objects');
         }
     }
@@ -72,12 +72,12 @@ public class ConfiguredResponser extends AbstractResponser {
 
             for (Id responseKey : responseObjectMap.keySet()) {
                 Response_Object__c responseNode = responseObjectMap.get(responseKey);
-				
+                
                 if (responseNode.Response_Object__c == null) {
                     this.levelDigitMap.put(0, new List<Id>{responseKey});
                     this.sortedLevelsList.add(0);
                     
-					topLevelFound = true;
+                    topLevelFound = true;
                     responseObjectMap.remove(responseKey);
                     break;
                 } else if (topLevelFound) {
@@ -110,11 +110,10 @@ public class ConfiguredResponser extends AbstractResponser {
             if (this.levelDigitMap.containsKey(level)) {
                 List<Id> nodes = this.levelDigitMap.get(level);
 
-
                 if (level == 0) {
                     for (Id attribute : responseAttributesMap.keySet()) {
                         if (responseAttributesMap.get(attribute).Response_Object__c == nodes[0]) {
-							gen.writeStringField(
+                            gen.writeStringField(
                                 responseAttributesMap.get(attribute).Tag_Name__c, 
                                 responseAttributesMap.get(attribute).Value__c
                             );
@@ -157,7 +156,7 @@ public class ConfiguredResponser extends AbstractResponser {
             sortedLevelsSet = new Set<Integer>();
             for (Integer level : sortedLevelsList) {
                 sortedLevelsSet.add(level);
-        	} 
+            } 
         } else {
             for (Integer level : this.levelDigitMap.keySet()) {
                 sortedLevelsSet.add(level);
