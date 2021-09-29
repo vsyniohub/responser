@@ -12,6 +12,8 @@ public class HTTPResponseHandler {
     ** Parameters: no
     ** Returns: void
     ** ********************************************* */
+    private RequestResponseLogHandler logHandler;
+    private DMLHandler databaseHandler;
     public HTTPResponseHandler() {
         fullURI 	= RestContext.request.requestURI;
         resourceId 	= fullURI.substringAfterLast(CHAR_SLASH_CHAR);
@@ -25,12 +27,21 @@ public class HTTPResponseHandler {
     ** Description: main method to initialize handlers
     ** ********************************************* */
     public void processCallin() {
-        HTTPResponseCodeHandler responseCodeHandler = HTTPResponseCodeHandler.getInstance();
-        AbstractResponser responser = new ResponseFactory().getResponseByType(resourceId);
+        logHandler      = RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
+        databaseHandler = DMLHandler.getInstance(); //handles database operations
+        
+        HTTPResponseCodeHandler responseCodeHandler = HTTPResponseCodeHandler.getInstance(); //handles HTTP Codes
+        
+        AbstractResponser responser = new ResponseFactory().getResponseByType(resourceId); //returns response from configuration
+        String responseText = responser.main();
         
         setContentType();
-        setBody(responser.main());
+        setBody(responseText);
         setCode(responseCodeHandler.getHttpResponseCode());
+        
+        logHandler.setResponseBody(responseText);
+        databaseHandler.addNew(logHandler.log());
+        databaseHandler.commitWork();
     }
 
     /* *********************************************
