@@ -24,7 +24,7 @@ public class RequestResponseLogHandler {
         private set;
     }
     
-	private RequestResponseLogHandler(String resourceId) {
+    private RequestResponseLogHandler(String resourceId) {
         this.resourceId = resourceId;
     }
     private RequestResponseLogHandler(DateTime responseTime, DateTime requestTime) {
@@ -60,6 +60,6 @@ public class RequestResponseLogHandler {
                 Response_Configuration__c = (Id)this.resourceId
             );
         }
-		return logRecord;
+        return logRecord;
     }
 }

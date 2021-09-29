@@ -1,6 +1,6 @@
 public class ResponseFactory {
-	public static Id RECORDTYPE_CONFIGURABLE 	= Schema.SObjectType.Response_Configuration__c.getRecordTypeInfosByName().get('Configurable').getRecordTypeId();
-	public static Id RECORDTYPE_RAW 			= Schema.SObjectType.Response_Configuration__c.getRecordTypeInfosByName().get('Raw').getRecordTypeId();
+    public static Id RECORDTYPE_CONFIGURABLE 	= Schema.SObjectType.Response_Configuration__c.getRecordTypeInfosByName().get('Configurable').getRecordTypeId();
+    public static Id RECORDTYPE_RAW 			= Schema.SObjectType.Response_Configuration__c.getRecordTypeInfosByName().get('Raw').getRecordTypeId();
     
     private static String MIRROR_STRING			= 'mirror';
     
@@ -12,7 +12,7 @@ public class ResponseFactory {
         if (resourceId.equals(MIRROR_STRING)) {
             return returnsStaticResponse();
         } else {
-			return returnNonStaticResponse(resourceId);
+            return returnNonStaticResponse(resourceId);
         }
     }
     private AbstractResponser returnsStaticResponse() {

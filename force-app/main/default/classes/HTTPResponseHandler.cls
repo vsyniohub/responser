@@ -27,7 +27,7 @@ public class HTTPResponseHandler {
     ** Description: main method to initialize handlers
     ** ********************************************* */
     public void processCallin() {
-        logHandler 		= RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
+        logHandler      = RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
         databaseHandler = DMLHandler.getInstance(); //handles database operations
         
         HTTPResponseCodeHandler responseCodeHandler = HTTPResponseCodeHandler.getInstance(); //handles HTTP Codes
@@ -41,7 +41,7 @@ public class HTTPResponseHandler {
         
         logHandler.setResponseBody(responseText);
         databaseHandler.addNew(logHandler.log());
-		databaseHandler.commitWork();
+        databaseHandler.commitWork();
     }
 
     /* *********************************************
