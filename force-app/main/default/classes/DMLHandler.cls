@@ -43,17 +43,21 @@ public class DMLHandler implements DMLUnitOfWork {
         
     }
     public void addNew(sObject record) {
-        if (recordsForInsert == null) {
-            recordsForInsert = new Map<Id, sObject>(); 
+        if (record != null) {
+            if (recordsForInsert == null) {
+                recordsForInsert = new Map<Id, sObject>(); 
+            }
+            recordsForInsert.put(record.Id, record);   
         }
-        recordsForInsert.put(record.Id, record);
     }
     public void addNew(List<sObject> records) {
-        if (recordsForInsert == null) {
-            recordsForInsert = new Map<Id, sObject>(); 
-        }
-        for (sObject record : records) {
-            recordsForInsert.put(record.Id, record);
+        if (records != null && !records.isEmpty()) {
+            if (recordsForInsert == null) {
+                recordsForInsert = new Map<Id, sObject>(); 
+            }
+            for (sObject record : records) {
+                recordsForInsert.put(record.Id, record);
+            }
         }
     }
     
