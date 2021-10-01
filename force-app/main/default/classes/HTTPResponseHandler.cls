@@ -1,10 +1,14 @@
 public class HTTPResponseHandler {
+    public final static String GET_STRING = 'GET';
+    public final static String POST_STRING = 'POST';
+    
     private final String CHAR_SLASH_CHAR = '/';
     private final String CONTENT_TYPE_STRING = 'Content-Type';
     private final String CONTENT_TYPE_STRING_VAL = 'application/json;charset=utf-8';
     
     private String fullURI;
     private String resourceId;
+    private String method;
     private RestResponse response;
 
     /* *********************************************
@@ -14,10 +18,12 @@ public class HTTPResponseHandler {
     ** ********************************************* */
     private RequestResponseLogHandler logHandler;
     private DMLHandler databaseHandler;
-    public HTTPResponseHandler() {
-        fullURI 	= RestContext.request.requestURI;
-        resourceId 	= fullURI.substringAfterLast(CHAR_SLASH_CHAR);
-        response 	= RestContext.response;
+    
+    public HTTPResponseHandler(String method) {
+        this.method		= method;
+        this.fullURI 	= RestContext.request.requestURI;
+        this.resourceId = fullURI.substringAfterLast(CHAR_SLASH_CHAR);
+        this.response 	= RestContext.response;
     }
 
     /* *********************************************
@@ -27,13 +33,13 @@ public class HTTPResponseHandler {
     ** Description: main method to initialize handlers
     ** ********************************************* */
     public void processCallin() {
-        logHandler      = RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
+        logHandler 		= RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
         databaseHandler = DMLHandler.getInstance(); //handles database operations
-        
-        HTTPResponseCodeHandler responseCodeHandler = HTTPResponseCodeHandler.getInstance(); //handles HTTP Codes
-        
+		
         AbstractResponser responser = new ResponseFactory().getResponseByType(resourceId); //returns response from configuration
         String responseText = responser.main();
+        
+        HTTPResponseCodeHandler responseCodeHandler = HTTPResponseCodeHandler.getInstance(); //handles HTTP Codes
         
         setContentType();
         setBody(responseText);
@@ -41,6 +47,7 @@ public class HTTPResponseHandler {
         
         logHandler.setResponseBody(responseText);
         databaseHandler.addNew(logHandler.log());
+        
         databaseHandler.commitWork();
     }
 

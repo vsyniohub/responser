@@ -11,7 +11,7 @@ public class DMLHandler implements DMLUnitOfWork {
     ** Private methods
     ** ********************** */
     private void makeDML() {
-        insertRecords(recordsForInsert.values());
+        if (recordsForInsert != null && !recordsForInsert.isEmpty()) insertRecords(recordsForInsert.values());
     }
     
     private void updateRecords(List<sObject> records) {
@@ -43,17 +43,21 @@ public class DMLHandler implements DMLUnitOfWork {
         
     }
     public void addNew(sObject record) {
-        if (recordsForInsert == null) {
-            recordsForInsert = new Map<Id, sObject>(); 
+        if (record != null) {
+            if (recordsForInsert == null) {
+                recordsForInsert = new Map<Id, sObject>(); 
+            }
+            recordsForInsert.put(record.Id, record);   
         }
-        recordsForInsert.put(record.Id, record);
     }
     public void addNew(List<sObject> records) {
-        if (recordsForInsert == null) {
-            recordsForInsert = new Map<Id, sObject>(); 
-        }
-        for (sObject record : records) {
-            recordsForInsert.put(record.Id, record);
+        if (records != null && !records.isEmpty()) {
+            if (recordsForInsert == null) {
+                recordsForInsert = new Map<Id, sObject>(); 
+            }
+            for (sObject record : records) {
+                recordsForInsert.put(record.Id, record);
+            }
         }
     }
     
