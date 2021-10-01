@@ -11,7 +11,7 @@ public class DMLHandler implements DMLUnitOfWork {
     ** Private methods
     ** ********************** */
     private void makeDML() {
-        insertRecords(recordsForInsert.values());
+        if (recordsForInsert != null && !recordsForInsert.isEmpty()) insertRecords(recordsForInsert.values());
     }
     
     private void updateRecords(List<sObject> records) {
