@@ -14,8 +14,8 @@ public abstract class AbstractResponser {
         levelDigitMap 		= new Map<Integer, List<Id>>();
         sortedLevelsList	= new List<Integer>();
     }
-    public abstract String main();
     public void setResponseConfiguration(Response_Configuration__c responseConfiguration) {
         this.responseConfiguration = responseConfiguration;
     }
+    public abstract String main();
 }

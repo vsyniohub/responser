@@ -2,7 +2,7 @@
 global class Responser {
     @HttpGet
     global static void doGet() {
-        new HTTPResponseHandler().processCallin();
+        new HTTPResponseHandler(HTTPResponseHandler.GET_STRING).processCallin();
     }
     @HttpPost
     global static void doPost() {
