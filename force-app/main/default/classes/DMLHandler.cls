@@ -7,7 +7,7 @@ public class DMLHandler implements DMLUnitOfWork {
     private Map<Id, sObject> recordsForDelete;
     private static DMLHandler instance;
     
-    /* **********************
+	/* **********************
     ** Private methods
     ** ********************** */
     private void makeDML() {
@@ -26,7 +26,7 @@ public class DMLHandler implements DMLUnitOfWork {
         delete records;
     }
     
-    /* **********************
+	/* **********************
     ** Public methods
     ** ********************** */
     public static DMLHandler getInstance() {
