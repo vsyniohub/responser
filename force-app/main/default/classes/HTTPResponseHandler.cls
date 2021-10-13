@@ -21,7 +21,7 @@ public class HTTPResponseHandler {
     
     public HTTPResponseHandler(String method) {
         this.method		= method;
-		this.fullURI 	= RestContext.request.requestURI;
+        this.fullURI 	= RestContext.request.requestURI;
         this.resourceId = fullURI.substringAfterLast(CHAR_SLASH_CHAR);
         this.response 	= RestContext.response;
     }
@@ -35,7 +35,7 @@ public class HTTPResponseHandler {
     public void processCallin() {
         logHandler 		= RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
         databaseHandler = DMLHandler.getInstance(); //handles database operations
-		
+        
         AbstractResponser responser = new ResponseFactory().getResponseByType(resourceId); //returns response from configuration
         String responseText = responser.main();
         
@@ -46,9 +46,9 @@ public class HTTPResponseHandler {
         setCode(responseCodeHandler.getHttpResponseCode());
         
         logHandler.setResponseBody(responseText);
-		databaseHandler.addNew(logHandler.log());
+        databaseHandler.addNew(logHandler.log());
         
-		databaseHandler.commitWork();
+        databaseHandler.commitWork();
     }
 
     /* *********************************************
@@ -58,7 +58,7 @@ public class HTTPResponseHandler {
     ** Description: sets RestResponse body
     ** ********************************************* */
     private void setBody(String responseBody) {
-		response.responseBody = Blob.valueOf(responseBody.replace('&quot;', '"'));
+        response.responseBody = Blob.valueOf(responseBody.replace('&quot;', '"'));
     }
 
     /* *********************************************

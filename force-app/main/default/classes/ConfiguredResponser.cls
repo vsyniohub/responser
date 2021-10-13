@@ -47,12 +47,12 @@ public class ConfiguredResponser extends AbstractResponser {
         this.resourceId = resourceId;
     }
     
-	/* *********************************************
-	** Method Name: buildLevelMap
-	** Description: builds map of level vs node id
-	** Parameters: no
-	** Returns: void
-	** ********************************************* */
+    /* *********************************************
+    ** Method Name: buildLevelMap
+    ** Description: builds map of level vs node id
+    ** Parameters: no
+    ** Returns: void
+    ** ********************************************* */
     private void buildLevelMap() {
         for (Id attributeKey : responseAttributesMap.keySet()) {
             Response_Attribute__c attribute = responseAttributesMap.get(attributeKey);
@@ -97,11 +97,11 @@ public class ConfiguredResponser extends AbstractResponser {
     }
     
     /* *********************************************
-	** Method Name: buildJSON
-	** Description: builds JSON based on level map
-	** Parameters: 
-	** Returns: String
-	** ********************************************* */
+    ** Method Name: buildJSON
+    ** Description: builds JSON based on level map
+    ** Parameters: 
+    ** Returns: String
+    ** ********************************************* */
     private String buildJSON() {
         JSONGenerator gen = JSON.createGenerator(true);
         
@@ -129,12 +129,12 @@ public class ConfiguredResponser extends AbstractResponser {
         return gen.getAsString();
     }
     
-	/* *********************************************
-	** Method Name: getParentLevel
-	** Description: 
-	** Parameters: Map<Integer, Set<Id>> - current level map, Id - 
-	** Returns: Integer
-	** ********************************************* */
+    /* *********************************************
+    ** Method Name: getParentLevel
+    ** Description: 
+    ** Parameters: Map<Integer, Set<Id>> - current level map, Id - 
+    ** Returns: Integer
+    ** ********************************************* */
     private Integer getParentLevel(Map<Integer, List<Id>> levelDigitMap, Id parentNodeId) {
         for (Integer level : levelDigitMap.keySet()) {
             if (levelDigitMap.get(level).contains(parentNodeId)) {
@@ -145,11 +145,11 @@ public class ConfiguredResponser extends AbstractResponser {
     }
     
     /* *********************************************
-	** Method Name: arrangeLevels
-	** Description: 
-	** Parameters: no
-	** Returns: void
-	** ********************************************* */
+    ** Method Name: arrangeLevels
+    ** Description: 
+    ** Parameters: no
+    ** Returns: void
+    ** ********************************************* */
     private void arrangeLevels() {
         if (this.sortNeeded) {
             sortedLevelsList.sort();
