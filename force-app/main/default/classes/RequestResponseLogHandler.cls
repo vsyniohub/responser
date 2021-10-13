@@ -3,7 +3,7 @@ public class RequestResponseLogHandler {
     private String responseBody;
     private String requestBody;
     private String resourceId;
-    private final String mirrorString;
+    private Set<String> excludedSubFolders = new Set<String>{ResponseFactory.MIRROR_STRING, ResponseFactory.MIRROR_HEADERS_STRING};
     private DateTime responseDateTime {
         get {
             if (responseDateTime == null) {
@@ -25,9 +25,8 @@ public class RequestResponseLogHandler {
         private set;
     }
     
-	private RequestResponseLogHandler(String resourceId) {
+    private RequestResponseLogHandler(String resourceId) {
         this.resourceId = resourceId;
-        this.mirrorString = ResponseFactory.MIRROR_STRING;
     }
     private RequestResponseLogHandler(DateTime responseTime, DateTime requestTime) {
         setResponseTime(responseTime);
@@ -55,7 +54,7 @@ public class RequestResponseLogHandler {
     }
     public Response_Log__c log() {
         Response_Log__c logRecord;
-        if (this.resourceId != null && !this.resourceId.equals(mirrorString)) {
+        if (this.resourceId != null && !excludedSubFolders.contains(this.resourceId)) {
             logRecord = new Response_Log__c(
                 Request_Body__c = this.requestBody,
                 Response_Body__c = this.responseBody,

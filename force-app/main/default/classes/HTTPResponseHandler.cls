@@ -35,7 +35,7 @@ public class HTTPResponseHandler {
     public void processCallin() {
         logHandler 		= RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
         databaseHandler = DMLHandler.getInstance(); //handles database operations
-		
+        
         AbstractResponser responser = new ResponseFactory().getResponseByType(resourceId); //returns response from configuration
         String responseText = responser.main();
         

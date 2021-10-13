@@ -10,7 +10,7 @@ public abstract class AbstractResponser {
     ** Returns: void
     ** ********************************************* */
     public AbstractResponser() {
-        objectAttributeMap 	= new Map<Id, List<Response_Attribute__c>>();
+		objectAttributeMap 	= new Map<Id, List<Response_Attribute__c>>();
         levelDigitMap 		= new Map<Integer, List<Id>>();
         sortedLevelsList	= new List<Integer>();
     }
