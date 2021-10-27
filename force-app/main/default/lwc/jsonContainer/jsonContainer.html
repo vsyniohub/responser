@@ -1,0 +1,31 @@
+<template>
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        
+            </header>
+        </div>
+        <div class="slds-card__body slds-card__body_inner">
+            <div class="row">
+                <lightning-textarea name="input1" value={responseText} onchange={textAreaChange} label="Enter some text" ></lightning-textarea>
+            </div>
+            <lightning-button 
+                variant="brand" 
+                label="Pretty" 
+                title="Pretty the JSON" 
+                onclick={handlePretty} 
+                class="slds-var-p-around_xx-small slds-var-m-left_x-small">
+            </lightning-button>
+            <lightning-button-stateful
+                label-when-off="Save"
+                label-when-on="Save"
+                icon-name-when-on="utility:arrow_bottom"
+                icon-name-when-off="utility:check"
+                variant="brand"
+                selected={isSelected}
+                onclick={saveData}>
+            </lightning-button-stateful>
+        </div>
+        
+    </article>
+</template>

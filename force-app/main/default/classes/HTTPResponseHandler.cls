@@ -18,7 +18,13 @@ public class HTTPResponseHandler {
     ** ********************************************* */
     private RequestResponseLogHandler logHandler;
     private DMLHandler databaseHandler;
-    
+
+    /* *********************************************
+    ** Method Name: HTTPResponseHandler
+    ** Description: Constructor
+    ** Parameters: String
+    ** Returns: N/A
+    ** ********************************************* */    
     public HTTPResponseHandler(String method) {
         this.method		= method;
         this.fullURI 	= RestContext.request.requestURI;
@@ -28,10 +34,10 @@ public class HTTPResponseHandler {
 
     /* *********************************************
     ** Method Name: processCallin
+    ** Description: Runs main part of a handler
     ** Parameters: no
     ** Returns: void
-    ** Description: main method to initialize handlers
-    ** ********************************************* */
+    ** ********************************************* */   
     public void processCallin() {
         logHandler 		= RequestResponseLogHandler.getInstance(resourceId); //logs requests and responses
         databaseHandler = DMLHandler.getInstance(); //handles database operations
@@ -53,30 +59,30 @@ public class HTTPResponseHandler {
 
     /* *********************************************
     ** Method Name: setBody
+    ** Description: sets HTTP Response body
     ** Parameters: String
     ** Returns: void
-    ** Description: sets RestResponse body
-    ** ********************************************* */
+    ** ********************************************* */   
     private void setBody(String responseBody) {
         response.responseBody = Blob.valueOf(responseBody.replace('&quot;', '"'));
     }
 
     /* *********************************************
     ** Method Name: setContentType
+    ** Description: sets HTTP Content Type
     ** Parameters: no
     ** Returns: void
-    ** Description: sets HTTP Content Type
-    ** ********************************************* */
+    ** ********************************************* */   
     private void setContentType() {
         response.addHeader(CONTENT_TYPE_STRING, CONTENT_TYPE_STRING_VAL);
     }
 
     /* *********************************************
     ** Method Name: setCode
-    ** Parameters: no
+    ** Description: sets default HTTP Response code
+    ** Parameters: Integer
     ** Returns: void
-    ** Description: sets HTTP Response Code
-    ** ********************************************* */
+    ** ********************************************* */   
     private void setCode(Integer code) {
         response.statusCode = 200;
     }

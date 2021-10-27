@@ -1,0 +1,7 @@
+.custom-textarea {
+    height: 300px;  
+    width: 100%;
+}
+:host {
+    --sds-c-textarea-sizing-min-height: 300px;
+}
