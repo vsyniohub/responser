@@ -1,4 +1,4 @@
-public class HTTPResponseHandler {
+public class HTTPResponseService {
     public final static String GET_STRING = 'GET';
     public final static String POST_STRING = 'POST';
     
@@ -20,12 +20,12 @@ public class HTTPResponseHandler {
     private DMLHandler databaseHandler;
 
     /* *********************************************
-    ** Method Name: HTTPResponseHandler
+    ** Method Name: HTTPResponseService
     ** Description: Constructor
     ** Parameters: String
     ** Returns: N/A
     ** ********************************************* */    
-    public HTTPResponseHandler(String method) {
+    public HTTPResponseService(String method) {
         this.method		= method;
         this.fullURI 	= RestContext.request.requestURI;
         this.resourceId = fullURI.substringAfterLast(CHAR_SLASH_CHAR);
