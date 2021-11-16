@@ -1,11 +1,8 @@
-public with sharing class RawResponseLightningController {
-    public RawResponseLightningController() {
-
-    }
+public with sharing class ResponseConfigurationLoginController {
 
     /* *********************************************
     ** Method Name: getResponseConfiguration
-    ** Description: Returns Response Configuration and Raw Response
+    ** Description: Returns Response Configuration
     ** Parameters: Id
     ** Returns: Response_Configuration__c
     ** ********************************************* */   
