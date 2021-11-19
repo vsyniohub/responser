@@ -6,7 +6,7 @@ export default class LoginPage extends LightningElement {
     responseId;
     idValue;
     hasError = false;
-    errorMessage = 'More value';
+    errorMessage = '';
     codeValue;
 
     connectedCallback() {
@@ -15,37 +15,54 @@ export default class LoginPage extends LightningElement {
     }
     setIdField(event) {
         this.idValue = event.target.value;
-        console.log(this.idValue);
+    }
+    onIdFocus(event) {
+        this.setValidityClear();
+    }
+    onValueFocus(event) {
+        this.setValidityClear();
     }
     setCodeField(event) {
         this.codeValue = event.target.value;
-        console.log(this.codeValue);
     }
     handleOpenConfiguration(event) {
-        console.log(this.idValue);
-        if (this.validateId()) {
-            this.retrieveResponseConfiguration();
+        if (!this.validateId()) {
+            this.setValidityError('Id value is not provided');
+        } else if (!this.validateValue()) {
+            this.setValidityError('Code value is not provided');
         } else {
-            console.log('Validity');
+            this.retrieveResponseConfiguration();
         }
     }
 
     validateId() {
         return (this.idValue ? true : false)
     }
-    setValidityError() {
+    validateValue() {
+        return (this.codeValue ? true : false)
+    }
+    setValidityError(text) {
+        this.errorMessage = text;
+        this.hasError = true;
+    }
+    setValidityClear(){
+        this.hasError = false;
+    }
+    setIdValidity(text) {
 
     }
     retrieveResponseConfiguration() {
-        console.log('Entered retrieve');
-        getResponseConfiguration({recordId : this.idValue })
+        getResponseConfiguration({
+            recordId : this.idValue,
+            recordCode : this.codeValue
+        })
         .then(result => {
             console.log('Entered retrieve result');
             
         })
         .catch(error => {
+            this.setValidityError(error.body.message);
             console.log('Entered retrieve error ' + error.body.message);
-            
         });
     }
 }
