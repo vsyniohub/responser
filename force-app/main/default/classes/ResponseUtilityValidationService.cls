@@ -9,9 +9,9 @@ public with sharing class ResponseUtilityValidationService extends Validator {
         this.code = code;
     }
     public override void validate() {
-        checkMinumumValidity();
+        checkMinimumValidity();
     }
-    public override void checkMinumumValidity() {
+    public override void checkMinimumValidity() {
         validateCode();
     }
     private void validateCode() {
