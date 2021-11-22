@@ -1,0 +1,65 @@
+<template>
+    
+        <lightning-layout>
+            <lightning-layout-item padding="around-small" size="4">
+                
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="4">
+                <div class="slds-grid slds-grid_vertical slds-align_absolute-center">
+                    <div class="slds-col slds-var-p-around_xx-small">
+                        <span>
+                            <lightning-input 
+                                type="text" 
+                                label="Configuration Id" 
+                                onchange={setIdField} 
+                                onfocus={onIdFocus}
+                                value={idValue}>
+                        </lightning-input>
+                        </span>
+                    </div>
+                    <div class="slds-col slds-var-p-around_xx-small">
+                        <span>
+                            <lightning-input 
+                                type="text" 
+                                label="Configuration Code" 
+                                onchange={setCodeField} 
+                                onfocus={onValueFocus}
+                                value={setCodeField}>
+                        </lightning-input>
+                        </span>
+                    </div>
+                </div>
+                <div class="slds-var-p-around_x-small slds-align_absolute-center">
+                    <lightning-button 
+                        variant="brand" 
+                        label="Open" 
+                        title="Open Configuration" 
+                        onclick={handleOpenConfiguration} 
+                        class="slds-var-m-left_x-small">
+                    </lightning-button>
+                </div>
+
+                <template if:true={hasError}>
+                    <div class="slds-align_absolute-center" style="height:4rem">
+                        <div class="slds-notify_container slds-is-relative">
+                            <div class="slds-notify slds-notify_toast slds-theme_warning" role="status">
+                                <span class="slds-assistive-text">error</span>
+                                <span class="slds-icon_container slds-icon-utility-error slds-var-m-right_small slds-no-flex slds-align-top" title="Description of icon when needed">
+                                    <lightning-icon size="" variant="inverse" icon-name="utility:error" alternative-text="Error" title="Error"></lightning-icon>
+                                </span> 
+                            <h2 class="slds-text-heading_small ">{errorMessage}</h2>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+
+            </lightning-layout-item>
+            <lightning-layout-item padding="around-small" size="4">
+                
+            </lightning-layout-item>
+        </lightning-layout>
+    
+        <div class="slds-var-p-around_x-large login-footer">
+            Responser
+        </div>
+</template>

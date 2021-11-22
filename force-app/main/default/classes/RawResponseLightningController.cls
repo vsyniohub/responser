@@ -11,10 +11,6 @@ public with sharing class RawResponseLightningController {
     ** ********************************************* */   
     @AuraEnabled(cacheable=true)
     public static Response_Configuration__c getResponseConfiguration(Id recordId) {
-        return [
-            SELECT Id, Raw_Response__c
-            FROM Response_Configuration__c
-            WHERE Id = :recordId
-        ];
+        return ResponseUtility.getResponseConfigurationById(recordId);
     }
 }
