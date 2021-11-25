@@ -1,4 +1,17 @@
 <apex:page showHeader="false" sidebar="false">
-    <h1>Congratulations</h1>
-    This is your new Page
+    <apex:includeLightning />    
+    <div id="lightningComponentId" />    
+    <script>
+        console.log('Page is not loaded');
+        $Lightning.use("c:responserLogin", function() {
+            $Lightning.createComponent(
+                "c:externalResponseContainer",
+                {},
+                "lightningComponentId",
+                function(cmp) {
+                    console.log('Page is loaded');
+                }
+            );
+        });
+    </script>
 </apex:page>
