@@ -41,7 +41,7 @@ public without sharing class ResponseUtility {
     ** Parameters: record
     ** Returns: void
     ** ********************************************* */   
-    public static void updateConfiguration(Response_Configuration__c record) {
+    public static void updateConfiguration(sObject record) {
         databaseHandler = DMLHandler.getInstance(); //handles database operations
         try {
             databaseHandler.addDirty(record);

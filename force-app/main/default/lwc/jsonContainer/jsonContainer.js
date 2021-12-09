@@ -30,23 +30,23 @@ export default class JsonContainer extends LightningElement {
     
     saveData(event) {
         const inputRecord = {
-            Id : this.record.Id,
+            sObjectType : 'Response_Configuration__c',
+            Id : this.record.Id, 
             Raw_Response__c : this.responseText
         }
-        console.log(inputRecord);
-        updateConfiguration(this.record)
-            .then(() => {
-                console.log('before update');
-                this.isSelected = false;
-                this.showToast('Success', 'Successful record update', 'success');
-                //this.template.querySelector('c-toast-message').showMessage('success', 'Successful record update');
-            })
-            .catch(error => {
-                console.log('error ' + error.body.message);
-                this.isSelected = true;
-                this.showToast('Error', error.body.message, 'error');
-                //this.template.querySelector('c-toast-message').showMessage('error', error.body.message);
-            });
+        updateConfiguration({record : inputRecord})
+        .then(() => {
+            console.log('before update');
+            this.isSelected = false;
+            this.showToast('Success', 'Successful record update', 'success');
+            //this.template.querySelector('c-toast-message').showMessage('success', 'Successful record update');
+        })
+        .catch(error => {
+            console.log('error ' + error.body.message);
+            this.isSelected = true;
+            this.showToast('Error', error.body.message, 'error');
+            //this.template.querySelector('c-toast-message').showMessage('error', error.body.message);
+        });
     }
     textAreaChange(event) {
         this.responseText = event.target.value;

@@ -15,13 +15,13 @@ public with sharing class RawResponseLightningController {
     }
 
     /* *********************************************
-    ** Method Name: getResponseConfiguration
-    ** Description: Returns Response Configuration
-    ** Parameters: recordId, recordCode
-    ** Returns: Response_Configuration__c
+    ** Method Name: updateConfiguration
+    ** Description: 
+    ** Parameters: record
+    ** Returns: void
     ** ********************************************* */   
-    @AuraEnabled(cacheable=true)
-    public static void updateConfiguration(Response_Configuration__c record) {
+    @AuraEnabled
+    public static void updateConfiguration(sObject record) {
         ResponseUtility.updateConfiguration(record);
     }
 }
