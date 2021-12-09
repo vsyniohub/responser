@@ -1,4 +1,6 @@
 public without sharing class ResponseUtility {
+    private static DMLHandler databaseHandler;
+
     /* *********************************************
     ** Method Name: returnResponseConfiguration
     ** Description: Returns Response Configuration
@@ -33,4 +35,21 @@ public without sharing class ResponseUtility {
         }
     }
 
+    /* *********************************************
+    ** Method Name: updateConfiguration
+    ** Description: 
+    ** Parameters: record
+    ** Returns: void
+    ** ********************************************* */   
+    public static void updateConfiguration(Response_Configuration__c record) {
+        databaseHandler = DMLHandler.getInstance(); //handles database operations
+        try {
+            databaseHandler.addDirty(record);
+        } catch (Exception e) {
+            String errorMessage = e.getMessage();
+            throw new AuraHandledException(errorMessage);
+        } finally {
+            databaseHandler.commitWork();
+        }
+    }
 }

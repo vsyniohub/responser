@@ -5,4 +5,14 @@
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property
+                    name="pureLightning"
+                    label="Pure Lightning"
+                    type="Boolean"
+                    default="true"
+                    required="false"/>
+        </targetConfig>
+    </targetConfigs>
 </LightningComponentBundle>

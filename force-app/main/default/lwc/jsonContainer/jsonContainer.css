@@ -5,3 +5,6 @@
 :host {
     --sds-c-textarea-sizing-min-height: 300px;
 }
+.login-footer {
+    position:fixed;left: 0;bottom: 0;width: 100%;text-align: center;
+}
