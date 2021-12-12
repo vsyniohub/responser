@@ -2,11 +2,13 @@
     <apex:includeLightning />    
     <div id="lightningComponentId" />    
     <script>
-        console.log('Page is not loaded');
+        console.log('Edit Response Page ' + '{!$CurrentPage.parameters.id}');
         $Lightning.use("c:responserLogin", function() {
             $Lightning.createComponent(
                 "c:externalResponseContainer",
-                {},
+                {
+                    recordId : '{!$CurrentPage.parameters.id}'
+                },
                 "lightningComponentId",
                 function(cmp) {
                     console.log('Page is loaded');

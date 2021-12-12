@@ -67,8 +67,12 @@ export default class LoginPage extends LightningElement {
         });
     }
     navigateToPage() {
+        const inputRecord = {
+            sObjectType : 'Response_Configuration__c',
+            Id : this.idValue, 
+        }
         this.dispatchEvent(new CustomEvent('redirectTo', {
-            detail: { },
+            detail: inputRecord,
             bubbles: true,
             composed: false,
         }));
