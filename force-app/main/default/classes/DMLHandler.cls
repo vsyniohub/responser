@@ -19,6 +19,7 @@ public class DMLHandler implements DMLUnitOfWork {
     ** ********************************************* */   
     private void makeDML() {
         if (recordsForInsert != null && !recordsForInsert.isEmpty()) insertRecords(recordsForInsert.values());
+        if (recordsForUpdate != null && !recordsForUpdate.isEmpty()) updateRecords(recordsForUpdate.values());
     }
 
     /* *********************************************
@@ -86,6 +87,12 @@ public class DMLHandler implements DMLUnitOfWork {
     ** ********************************************* */   
     public void addDirty(sObject record) {
         
+        if (record != null) {
+            if (recordsForUpdate == null) {
+                recordsForUpdate = new Map<Id, sObject>(); 
+            }
+            recordsForUpdate.put(record.Id, record);   
+        }
     }
 
     /* *********************************************

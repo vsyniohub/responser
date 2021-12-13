@@ -59,10 +59,22 @@ export default class LoginPage extends LightningElement {
         .then(result => {
             console.log('Entered retrieve result');
             
+            this.navigateToPage();
         })
         .catch(error => {
             this.setValidityError(error.body.message);
             console.log('Entered retrieve error ' + error.body.message);
         });
+    }
+    navigateToPage() {
+        const inputRecord = {
+            sObjectType : 'Response_Configuration__c',
+            Id : this.idValue, 
+        }
+        this.dispatchEvent(new CustomEvent('redirectTo', {
+            detail: inputRecord,
+            bubbles: true,
+            composed: false,
+        }));
     }
 }
